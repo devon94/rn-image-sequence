@@ -5,9 +5,7 @@ its a simple wrapper around **iOS** `UIImageView.animationImages` and **Android*
 
 ## Installation
 
-1. `npm i --save rn-image-sequence`
-2. `react-native link rn-image-sequence`
-
+1. `yarn add rn-image-sequence`
 
 ## Examples
 
@@ -18,35 +16,11 @@ const images = [
   require('1.jpg'),
   require('2.jpg'),
   require('3.jpg'),
-  require('4.jpg'),
-  require('5.jpg'),
 ];
 
-const centerIndex = Math.round(images.length / 2);
-
 <ImageSequence
   images={images}
-  startFrameIndex={centerIndex}
-  style={{width: 50, height: 50}} />
-```
-
-### Change animation speed
-You can change the speed of the animation by setting the `framesPerSecond` property.
-
-```javascript
-<ImageSequence
-  images={images}
-  framesPerSecond={24}
-  />
-```
-
-### Looping
-You can change if animation loops indefinitely by setting the `loop` property.
-
-```javascript
-<ImageSequence
-  images={images}
-  framesPerSecond={24}
+  framesPerSecond={30}
   loop={false}
   />
 ```
