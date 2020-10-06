@@ -2,7 +2,10 @@
   "name": "rn-image-sequence",
   "repository": {
     "type": "git",
-    "url": "https://github.com/devon94/rn-image-sequence.git"
+    "url": "git+https://github.com/devon94/rn-image-sequence.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "version": "0.1.0",
   "description": "An Image Sequence component for react-native",
@@ -25,5 +28,12 @@
     "gif",
     "png",
     "jpg"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/devon94/rn-image-sequence/issues"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Devon Deonarine"
 }
