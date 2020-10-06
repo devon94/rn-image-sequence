@@ -2,13 +2,13 @@
   "name": "rn-image-sequence",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devon94/rn-image-sequence.git"
+    "url": "https://github.com/devon94/rn-image-sequence.git"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
   "version": "0.1.0",
-  "description": "An Image Sequence component for react-native",
+  "description": "An image sequence component for react-native",
   "peerDependencies": {
     "react-native": ">=0.47.0",
     "prop-types": ">=15.5.0"
@@ -19,15 +19,11 @@
   "types": "typings/index.d.ts",
   "keywords": [
     "react-native",
-    "sequence",
     "imageSequence",
     "images",
     "animated",
     "frames",
-    "animation",
-    "gif",
-    "png",
-    "jpg"
+    "animation"
   ],
   "bugs": {
     "url": "https://github.com/devon94/rn-image-sequence/issues"
