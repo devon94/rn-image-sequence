@@ -1,5 +1,5 @@
 # rn-image-sequence
-A package that uses native modules for creating image sequence animations.
+A package that uses native modules for creating image sequence animations. Based off of the react-native-image-sequence package (https://github.com/madsleejensen/react-native-image-sequence)
 
 ## Installation
 

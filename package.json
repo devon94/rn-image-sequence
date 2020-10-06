@@ -22,6 +22,10 @@
     "frames",
     "animation"
   ],
+  "devDependencies": {
+    "react": "16.13.1",
+    "react-native": "0.63.2"
+  },
   "bugs": {
     "url": "https://github.com/devon94/rn-image-sequence/issues"
   },
