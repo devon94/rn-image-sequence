@@ -72,11 +72,12 @@ class ImageSequence extends React.PureComponent<ImageSequenceProps> {
     return findNodeHandle(this.ref);
   }
 
-  setRef(ref: RefType) {
+  setRef = (ref: RefType) => {
+    const { autoPlay = true } = this.props
     this.ref = ref
-    // if (this.props.autoPlay) {
-    //   this.play()
-    // }
+    if (autoPlay) {
+      this.play()
+    }
   }
 
   render() {

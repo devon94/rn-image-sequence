@@ -33,7 +33,7 @@ declare class ImageSequence extends React.PureComponent<ImageSequenceProps> {
     play: () => void;
     stop: () => void;
     getHandle: () => number | null;
-    setRef(ref: RefType): void;
+    setRef: (ref: RefType) => void;
     render(): JSX.Element;
 }
 export default ImageSequence;

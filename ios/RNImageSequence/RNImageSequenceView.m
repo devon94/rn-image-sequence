@@ -10,6 +10,9 @@
     NSMutableDictionary *_activeTasks;
     NSMutableDictionary *_imagesLoaded;
     BOOL _loop;
+    NSUInteger _loopFrom;
+    NSUInteger _loopTo;
+    BOOL _animationReady;
 }
 
 - (void)setImages:(NSArray *)images {
@@ -74,7 +77,8 @@
     self.animationImages = images;
     self.animationRepeatCount = _loop ? 0 : 1;
     self.image = self.animationImages.lastObject;
-    [self startAnimating];
+    
+    _animationReady = true;
 }
 
 - (void)setFramesPerSecond:(NSUInteger)framesPerSecond {
@@ -90,5 +94,40 @@
 
     self.animationRepeatCount = _loop ? 0 : 1;
 }
+
+
+- (void)setLoopFrom:(NSUInteger)loopFrom {
+    _loopFrom = loopFrom;
+}
+
+- (void)setLoopTo:(NSUInteger)loopTo {
+    _loopTo = loopTo;
+}
+
+- (void)stopAnimating {
+    while(true) {
+        if (_animationReady) {
+            break;
+        }
+    }
+    
+    if (self.isAnimating) {
+        [self stopAnimating];
+    }
+}
+
+- (void)startAnimating {
+    while(true) {
+        if (_animationReady) {
+            break;
+        }
+    }
+    
+    if (!self.isAnimating) {
+        [self startAnimating];
+    }
+}
+
+
 
 @end
