@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { findNodeHandle, Image, NativeMethods, requireNativeComponent, UIManager, View, ViewStyle, StyleSheet } from 'react-native';
-// @ts-ignore
-import SafeModule from 'react-native-safe-modules';
 
 interface RNImageSequenceProps {
   hasLoopInfo: boolean
@@ -13,10 +11,7 @@ interface RNImageSequenceProps {
   loop: boolean
 }
 
-const RNImageSequence = SafeModule.component({
-  viewName: 'RNImageSequence',
-  mockComponent: View,
-});
+const RNImageSequence = requireNativeComponent<RNImageSequenceProps>("RNImageSequence")
 
 export interface LoopInfo {
   /** Frame to play animation from. */
