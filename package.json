@@ -7,24 +7,29 @@
   "version": "0.1.0",
   "description": "An image sequence component for react-native",
   "peerDependencies": {
-    "react-native": ">=0.47.0",
-    "prop-types": ">=15.5.0"
+    "react-native": ">=0.60.0"
   },
   "license": "MIT",
   "homepage": "https://github.com/devon94/rn-image-sequence",
-  "main": "index.js",
-  "types": "typings/index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "keywords": [
-    "react-native",
-    "imageSequence",
-    "images",
     "animated",
+    "animation",
     "frames",
-    "animation"
+    "images",
+    "imageSequence",
+    "react-native"
   ],
+  "dependencies": {
+    "react-native-safe-modules": "^1.0.0"
+  },
   "devDependencies": {
+    "@types/react-native": "0.63.25",
+    "@types/react": "16.8.24",
     "react": "16.13.1",
-    "react-native": "0.63.2"
+    "react-native": "0.63.2",
+    "typescript": "4.0.3"
   },
   "bugs": {
     "url": "https://github.com/devon94/rn-image-sequence/issues"
