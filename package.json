@@ -22,7 +22,6 @@
     "react-native"
   ],
   "dependencies": {
-    "react-native-safe-modules": "^1.0.0"
   },
   "devDependencies": {
     "@types/react-native": "0.63.25",
