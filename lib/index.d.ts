@@ -8,6 +8,7 @@ interface RNImageSequenceProps {
     images: any[];
     framesPerSecond: number;
     loop: boolean;
+    style: ViewStyle;
 }
 export interface LoopInfo {
     startFrame?: number;

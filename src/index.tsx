@@ -9,6 +9,7 @@ interface RNImageSequenceProps {
   images: any[]
   framesPerSecond: number
   loop: boolean
+  style: ViewStyle
 }
 
 const RNImageSequence = requireNativeComponent<RNImageSequenceProps>("RNImageSequence")
@@ -95,6 +96,7 @@ class ImageSequence extends React.PureComponent<ImageSequenceProps> {
     return (
       <View style={[styles.container, { ...style, width, height }]}>
         <RNImageSequence
+          style={{ width, height }}
           hasLoopInfo={hasLoopInfo}
           startFrame={startFrame}
           loopFrom={loopFrom}
