@@ -30,6 +30,7 @@ declare type RefType = React.Component<RNImageSequenceProps, {}, any> & Readonly
 declare class ImageSequence extends React.PureComponent<ImageSequenceProps> {
     private ref;
     constructor(props: ImageSequenceProps);
+    runCommand: (commandName: string, args?: never[]) => void | null;
     play: () => void;
     stop: () => void;
     getHandle: () => number | null;

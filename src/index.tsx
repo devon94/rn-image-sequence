@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { findNodeHandle, Image, NativeMethods, requireNativeComponent, UIManager, View, ViewStyle, StyleSheet } from 'react-native';
+import { findNodeHandle, Image, NativeMethods, requireNativeComponent, UIManager, View, ViewStyle, StyleSheet, Platform } from 'react-native';
 
 interface RNImageSequenceProps {
   hasLoopInfo: boolean
@@ -10,6 +10,7 @@ interface RNImageSequenceProps {
   framesPerSecond: number
   loop: boolean
   style: ViewStyle
+  isPlaying: boolean
 }
 
 const RNImageSequence = requireNativeComponent<RNImageSequenceProps>("RNImageSequence")
@@ -45,27 +46,49 @@ export interface ImageSequenceProps {
 
 type RefType = React.Component<RNImageSequenceProps, {}, any> & Readonly<NativeMethods>
 
-class ImageSequence extends React.PureComponent<ImageSequenceProps> {
+interface State {
+  isPlaying: boolean
+}
+
+class ImageSequence extends React.PureComponent<ImageSequenceProps, State> {
   private ref: RefType | null = null
 
   constructor(props: ImageSequenceProps) {
     super(props);
+    this.state = {
+      isPlaying: false
+    }
+  }
+
+  runCommand = (commandName: string, args = []) => {
+    const handle = this.getHandle()
+
+    if (!handle) {
+      return null
+    }
+
+    return UIManager.dispatchViewManagerCommand(
+      handle,
+      UIManager.getViewManagerConfig("RNImageSequence").Commands[commandName],
+      args
+    )
   }
 
   play = () => {
-    UIManager.dispatchViewManagerCommand(
-      this.getHandle(),
-      UIManager.getViewManagerConfig("RNImageSequence").Commands.startAnimating,
-      []
-    )
+    const action = Platform.select({
+      ios: () => {
+        this.setState({ isPlaying: true })
+      },
+      android: () => {
+        this.setState({ isPlaying: true })
+        // this.runCommand("startAnimating")
+      }
+    })
+    action()
   }
 
   stop = () => {
-    UIManager.dispatchViewManagerCommand(
-      this.getHandle(),
-      UIManager.getViewManagerConfig("RNImageSequence").Commands.stopAnimating,
-      []
-    )
+    this.runCommand("stopAnimating")
   }
 
   getHandle = () => {
@@ -75,7 +98,8 @@ class ImageSequence extends React.PureComponent<ImageSequenceProps> {
   setRef = (ref: RefType) => {
     const { autoPlay = true } = this.props
     this.ref = ref
-    if (autoPlay) {
+
+    if (autoPlay === true) {
       this.play()
     }
   }
@@ -105,6 +129,7 @@ class ImageSequence extends React.PureComponent<ImageSequenceProps> {
           images={normalized}
           framesPerSecond={framesPerSecond}
           loop={loop}
+          isPlaying={this.state.isPlaying}
           ref={this.setRef}
         />
       </View>

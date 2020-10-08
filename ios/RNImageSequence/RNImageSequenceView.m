@@ -5,6 +5,9 @@
 
 #import "RNImageSequenceView.h"
 
+BOOL _animationReady = false;
+BOOL _isPlaying = false;
+
 @implementation RNImageSequenceView {
     NSUInteger _framesPerSecond;
     NSMutableDictionary *_activeTasks;
@@ -12,8 +15,8 @@
     BOOL _loop;
     NSUInteger _loopFrom;
     NSUInteger _loopTo;
-    BOOL _animationReady;
 }
+
 
 - (void)setImages:(NSArray *)images {
     __weak RNImageSequenceView *weakSelf = self;
@@ -76,7 +79,7 @@
     self.animationDuration = images.count * (1.0f / _framesPerSecond);
     self.animationImages = images;
     self.animationRepeatCount = _loop ? 0 : 1;
-    self.image = self.animationImages.lastObject;
+    self.image = self.animationImages.firstObject;
     
     _animationReady = true;
 }
@@ -104,30 +107,27 @@
     _loopTo = loopTo;
 }
 
-- (void)stopAnimating {
-    while(true) {
-        if (_animationReady) {
-            break;
-        }
+- (void) setIsPlaying:(BOOL)isPlaying {
+    if (!_animationReady) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self setIsPlaying:isPlaying];
+        });
+        
+        return;
     }
     
-    if (self.isAnimating) {
-        [self stopAnimating];
-    }
-}
-
-- (void)startAnimating {
-    while(true) {
-        if (_animationReady) {
-            break;
-        }
-    }
+    self.image = self.animationImages.lastObject;
     
-    if (!self.isAnimating) {
+    if (!_isPlaying && isPlaying) {
         [self startAnimating];
     }
+    
+    if (_isPlaying && !isPlaying) {
+        [self stopAnimating];
+    }
+    
+    _isPlaying = isPlaying;
 }
-
 
 
 @end

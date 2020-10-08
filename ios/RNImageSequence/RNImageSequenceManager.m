@@ -16,28 +16,7 @@ RCT_EXPORT_VIEW_PROPERTY(framesPerSecond, NSUInteger);
 RCT_EXPORT_VIEW_PROPERTY(loop, BOOL);
 RCT_EXPORT_VIEW_PROPERTY(loopFrom, NSUInteger);
 RCT_EXPORT_VIEW_PROPERTY(loopTo, NSUInteger);
-
-RCT_EXPORT_METHOD(stopAnimating:(nonnull NSNumber *)reactTag){
-    [self.bridge.uiManager addUIBlock:^(RCTUIManager *uiManager, NSDictionary<NSNumber *,UIView *> *viewRegistry) {
-        RNImageSequenceView *view = viewRegistry[reactTag];
-        if (!view || ![view isKindOfClass:[RNImageSequenceView class]]) {
-            RCTLogError(@"Cannot find RNImageSequenceView with tag #%@", reactTag);
-            return;
-        }
-        [view stopAnimating];
-    }];
-}
-
-RCT_EXPORT_METHOD(startAnimating:(nonnull NSNumber *)reactTag){
-    [self.bridge.uiManager addUIBlock:^(RCTUIManager *uiManager, NSDictionary<NSNumber *,UIView *> *viewRegistry) {
-        RNImageSequenceView *view = viewRegistry[reactTag];
-        if (!view || ![view isKindOfClass:[RNImageSequenceView class]]) {
-            RCTLogError(@"Cannot find RNImageSequenceView with tag #%@", reactTag);
-            return;
-        }
-        [view startAnimating];
-    }];
-}
+RCT_EXPORT_VIEW_PROPERTY(isPlaying, BOOL);
 
 - (UIView *)view {
     return [RNImageSequenceView new];
