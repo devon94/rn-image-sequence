@@ -83,7 +83,8 @@ class ImageSequence extends React.PureComponent<ImageSequenceProps, State> {
         this.setState({ isPlaying: true })
         // this.runCommand("startAnimating")
       }
-    })
+    })!
+    
     action()
   }
 

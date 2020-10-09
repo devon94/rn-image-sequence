@@ -9,6 +9,7 @@ interface RNImageSequenceProps {
     framesPerSecond: number;
     loop: boolean;
     style: ViewStyle;
+    isPlaying: boolean;
 }
 export interface LoopInfo {
     startFrame?: number;
@@ -27,7 +28,10 @@ export interface ImageSequenceProps {
     style?: ViewStyle;
 }
 declare type RefType = React.Component<RNImageSequenceProps, {}, any> & Readonly<NativeMethods>;
-declare class ImageSequence extends React.PureComponent<ImageSequenceProps> {
+interface State {
+    isPlaying: boolean;
+}
+declare class ImageSequence extends React.PureComponent<ImageSequenceProps, State> {
     private ref;
     constructor(props: ImageSequenceProps);
     runCommand: (commandName: string, args?: never[]) => void | null;
