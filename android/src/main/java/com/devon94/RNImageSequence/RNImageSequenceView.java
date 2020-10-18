@@ -205,12 +205,12 @@ public class RNImageSequenceView extends ImageView {
             final AnimationDrawable initialAnimationDrawable = new AnimationDrawable();
             final AnimationDrawable loopAnimationDrawable = new AnimationDrawable();
 
-            for (int index = this.startFrame; index < this.loopTo; index++) {
+            for (int index = this.startFrame; index <= this.loopTo; index++) {
                 BitmapDrawable drawable = new BitmapDrawable(this.getResources(), bitmaps.get(index));
                 initialAnimationDrawable.addFrame(drawable, 1000 / framesPerSecond);
             }
 
-            for (int index = this.loopFrom; index < this.loopTo; index++) {
+            for (int index = this.loopFrom; index <= this.loopTo; index++) {
                 BitmapDrawable drawable = new BitmapDrawable(this.getResources(), bitmaps.get(index));
                 loopAnimationDrawable.addFrame(drawable, 1000 / framesPerSecond);
             }
