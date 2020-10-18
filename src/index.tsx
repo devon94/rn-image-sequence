@@ -60,6 +60,14 @@ class ImageSequence extends React.PureComponent<ImageSequenceProps, State> {
     }
   }
 
+  componentDidMount() {
+    const { autoPlay = true } = this.props
+
+    if (autoPlay === true) {
+      this.play()
+    }
+  }
+
   runCommand = (commandName: string, args = []) => {
     const handle = this.getHandle()
 
@@ -81,13 +89,15 @@ class ImageSequence extends React.PureComponent<ImageSequenceProps, State> {
       },
       android: () => {
         this.setState({ isPlaying: true })
+        // TODO
         // this.runCommand("startAnimating")
       }
     })!
-    
+
     action()
   }
 
+  // TODO
   stop = () => {
     this.runCommand("stopAnimating")
   }
@@ -97,12 +107,7 @@ class ImageSequence extends React.PureComponent<ImageSequenceProps, State> {
   }
 
   setRef = (ref: RefType) => {
-    const { autoPlay = true } = this.props
     this.ref = ref
-
-    if (autoPlay === true) {
-      this.play()
-    }
   }
 
   render() {
