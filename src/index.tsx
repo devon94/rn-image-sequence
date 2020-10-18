@@ -25,7 +25,6 @@ export interface LoopInfo {
 }
 
 export interface ImageSequenceProps {
-  autoPlay?: boolean
   /** An array of source images. Each element of the array should be the result of a call to require(imagePath). */
   images: any[];
   /** Which index of the images array should the sequence start at. Default: 0 */
@@ -61,7 +60,8 @@ class ImageSequence extends React.PureComponent<ImageSequenceProps, State> {
   }
 
   componentDidMount() {
-    const { autoPlay = true } = this.props
+    // const { autoPlay = true } = this.props
+    const autoPlay = true
 
     if (autoPlay === true) {
       this.play()

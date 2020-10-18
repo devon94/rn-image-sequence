@@ -17,7 +17,6 @@ export interface LoopInfo {
     loopTo: number;
 }
 export interface ImageSequenceProps {
-    autoPlay?: boolean;
     images: any[];
     startFrameIndex?: number;
     framesPerSecond?: number;
@@ -34,6 +33,7 @@ interface State {
 declare class ImageSequence extends React.PureComponent<ImageSequenceProps, State> {
     private ref;
     constructor(props: ImageSequenceProps);
+    componentDidMount(): void;
     runCommand: (commandName: string, args?: never[]) => void | null;
     play: () => void;
     stop: () => void;

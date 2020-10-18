@@ -18,7 +18,8 @@ RCT_EXPORT_VIEW_PROPERTY(loopFrom, NSUInteger);
 RCT_EXPORT_VIEW_PROPERTY(loopTo, NSUInteger);
 RCT_EXPORT_VIEW_PROPERTY(isPlaying, BOOL);
 
-- (UIView *)view {
+- (UIView *)view 
+{
     return [RNImageSequenceView new];
 }
 

@@ -18,6 +18,9 @@ BOOL _isPlaying = false;
 
 - (void)setImages:(NSArray *)images
 {
+    _animationReady = false;
+    _isPlaying = false;
+    
     __weak RNImageSequenceView *weakSelf = self;
 
     self.animationImages = nil;
