@@ -18,8 +18,10 @@
     "animation",
     "frames",
     "images",
-    "imageSequence",
-    "react-native"
+    "image sequence",
+    "react-native",
+    "react",
+    "native"
   ],
   "dependencies": {
   },
