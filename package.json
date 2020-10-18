@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/devon94/rn-image-sequence.git"
   },
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An image sequence component for react-native",
   "peerDependencies": {
     "react-native": ">=0.60.0"
