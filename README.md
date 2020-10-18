@@ -48,7 +48,6 @@ const SomeComponent: React.FunctionComponent = (props) => {
 ```
 
 #### Customizing loops
-*Currently works on Android, iOS under development.*
 
 The ImageSequence component has a prop that takes two required arguments that correspond to the indicies of the frames you would like the loop to play. This example code below will loop from the first frame to the 2nd frame.
 

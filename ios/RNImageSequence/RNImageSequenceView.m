@@ -12,6 +12,7 @@ BOOL _isPlaying = false;
     NSMutableDictionary *_activeTasks;
     NSMutableDictionary *_imagesLoaded;
     BOOL _loop;
+    BOOL _hasLoopInfo;
     NSUInteger _loopFrom;
     NSUInteger _loopTo;
 }
@@ -78,14 +79,43 @@ BOOL _isPlaying = false;
         [images addObject:image];
     }
 
-    [_imagesLoaded removeAllObjects];
-
     self.animationDuration = images.count * (1.0f / _framesPerSecond);
     self.animationImages = images;
-    self.animationRepeatCount = _loop ? 0 : 1;
     self.image = self.animationImages.firstObject;
     
+    if (_hasLoopInfo)
+    {
+        self.animationRepeatCount = 1;
+    }
+    else
+    {
+        self.animationRepeatCount = _loop ? 0 : 1;
+    }
+    
     _animationReady = true;
+}
+
+
+- (void) onFirstAnimationCompleted:(BOOL)success
+{
+    if(_hasLoopInfo)
+    {
+        [self stopAnimating];
+        NSMutableArray *images = [NSMutableArray new];
+        for (NSUInteger index = _loopFrom; index <= _loopTo; index++) {
+            UIImage *image = _imagesLoaded[@(index)];
+            [images addObject:image];
+        }
+
+
+        self.animationDuration = images.count * (1.0f / _framesPerSecond);
+        self.animationImages = images;
+        self.animationRepeatCount = _loop ? 0 : 1;
+        self.image = self.animationImages.firstObject;
+        [self startAnimating];
+    }
+
+    [_imagesLoaded removeAllObjects];
 }
 
 - (void)setFramesPerSecond:(NSUInteger)framesPerSecond
@@ -100,8 +130,13 @@ BOOL _isPlaying = false;
 - (void)setLoop:(NSUInteger)loop
 {
     _loop = loop;
-
     self.animationRepeatCount = _loop ? 0 : 1;
+}
+
+
+- (void)setHasLoopInfo:(NSUInteger)hasLoopInfo
+{
+    _hasLoopInfo = hasLoopInfo;
 }
 
 
@@ -127,7 +162,17 @@ BOOL _isPlaying = false;
     
     if (!_isPlaying && isPlaying) {
         self.image = self.animationImages.lastObject;
-        [self startAnimating];
+        if (_hasLoopInfo)
+        {
+            [self startAnimatingWithCompletionBlock:^(BOOL success)
+            {
+                [self onFirstAnimationCompleted:success];
+            }];
+        }
+        else
+        {
+            [self startAnimating];
+        }
     }
     
     if (_isPlaying && !isPlaying) {
@@ -137,5 +182,6 @@ BOOL _isPlaying = false;
     
     _isPlaying = isPlaying;
 }
+
 
 @end
