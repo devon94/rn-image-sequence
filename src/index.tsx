@@ -111,7 +111,7 @@ class ImageSequence extends React.PureComponent<ImageSequenceProps, State> {
   }
 
   render() {
-    const { startFrameIndex, images, width, height, loopInfo, framesPerSecond = 30, loop = false, style = {} } = this.props
+    const { startFrameIndex = 0, images, width, height, loopInfo, framesPerSecond = 30, loop = false, style = {} } = this.props
 
     let normalized = images.map(Image.resolveAssetSource)
 
