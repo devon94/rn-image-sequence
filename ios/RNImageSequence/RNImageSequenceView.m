@@ -1,6 +1,5 @@
 //
-// Created by Devon Deonarineon 10/02/20.
-// Copyright (c) 2016 Facebook. All rights reserved.
+// Created by Devon Deonarine on 10/02/20.
 //
 
 #import "RNImageSequenceView.h"
@@ -17,8 +16,8 @@ BOOL _isPlaying = false;
     NSUInteger _loopTo;
 }
 
-
-- (void)setImages:(NSArray *)images {
+- (void)setImages:(NSArray *)images
+{
     __weak RNImageSequenceView *weakSelf = self;
 
     self.animationImages = nil;
@@ -53,7 +52,8 @@ BOOL _isPlaying = false;
     }
 }
 
-- (void)onImageLoadTaskAtIndex:(NSUInteger)index image:(UIImage *)image {
+- (void)onImageLoadTaskAtIndex:(NSUInteger)index image:(UIImage *)image
+{
     if (index == 0) {
         self.image = image;
     }
@@ -67,7 +67,8 @@ BOOL _isPlaying = false;
     }
 }
 
-- (void)onImagesLoaded {
+- (void)onImagesLoaded
+{
     NSMutableArray *images = [NSMutableArray new];
     for (NSUInteger index = 0; index < _imagesLoaded.allValues.count; index++) {
         UIImage *image = _imagesLoaded[@(index)];
@@ -84,7 +85,8 @@ BOOL _isPlaying = false;
     _animationReady = true;
 }
 
-- (void)setFramesPerSecond:(NSUInteger)framesPerSecond {
+- (void)setFramesPerSecond:(NSUInteger)framesPerSecond
+{
     _framesPerSecond = framesPerSecond;
 
     if (self.animationImages.count > 0) {
@@ -92,22 +94,26 @@ BOOL _isPlaying = false;
     }
 }
 
-- (void)setLoop:(NSUInteger)loop {
+- (void)setLoop:(NSUInteger)loop
+{
     _loop = loop;
 
     self.animationRepeatCount = _loop ? 0 : 1;
 }
 
 
-- (void)setLoopFrom:(NSUInteger)loopFrom {
+- (void)setLoopFrom:(NSUInteger)loopFrom
+{
     _loopFrom = loopFrom;
 }
 
-- (void)setLoopTo:(NSUInteger)loopTo {
+- (void)setLoopTo:(NSUInteger)loopTo
+{
     _loopTo = loopTo;
 }
 
-- (void) setIsPlaying:(BOOL)isPlaying {
+- (void) setIsPlaying:(BOOL)isPlaying
+{
     if (!_animationReady) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self setIsPlaying:isPlaying];
@@ -116,18 +122,17 @@ BOOL _isPlaying = false;
         return;
     }
     
-    self.image = self.animationImages.lastObject;
-    
     if (!_isPlaying && isPlaying) {
+        self.image = self.animationImages.lastObject;
         [self startAnimating];
     }
     
     if (_isPlaying && !isPlaying) {
+        self.image = self.animationImages.firstObject;
         [self stopAnimating];
     }
     
     _isPlaying = isPlaying;
 }
-
 
 @end

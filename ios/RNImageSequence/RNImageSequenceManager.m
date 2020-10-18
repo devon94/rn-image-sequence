@@ -1,7 +1,7 @@
 //
-// Created by Devon Deonarineon 10/02/20.
-// Copyright (c) 2016 Facebook. All rights reserved.
+// Created by Devon Deonarine on 10/02/20.
 //
+
 
 #import "RNImageSequenceManager.h"
 #import "RNImageSequenceView.h"
